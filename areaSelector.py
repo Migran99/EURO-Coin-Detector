@@ -24,8 +24,7 @@ def thersholdImage(im):
     hsv = cv2.cvtColor(im,cv2.COLOR_RGB2HSV)
     gray = cv2.cvtColor(im,cv2.COLOR_RGB2GRAY)
     ret, thresImage = cv2.threshold(gray,100,255,cv2.THRESH_BINARY)
-    #thresImage = cv2.adaptiveThreshold(filteredImage,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY,11,2)
-    #thresImage = cv2.inRange(hsv,(0,0,0),(255,120,255))
+    thresImage = cv2.inRange(hsv,(0,0,0),(255,120,255))
     
     plt.imshow(cv2.cvtColor(thresImage, cv2.COLOR_BGR2RGB))
     plt.title('Threshold Image')
@@ -136,4 +135,4 @@ def getCoinArea(filePath):
     return resImage
 
 if(__name__ == "__main__"):
-    getCoinArea("images/juntas.jpeg")
+    getCoinArea("images/torcida.jpeg")
