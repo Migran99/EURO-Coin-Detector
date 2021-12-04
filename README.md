@@ -7,6 +7,12 @@ Homography is used to warp the image and get only the ROI. For that, the coins m
 
 The distribution of the coins does not matter (or at least it shouldn't). My algorithms detects the borders of the paper and transforms it into a cropped and stretched image of it.
 
+### Original Image
+<img src="images/torcida.jpeg" width="400"/>
+
+### Warped Image
+<img src="images/output.png" width="400"/>
+
 ## Coin Detection - Dataset
 
 This is the point of the project  which needs more work now. I have not been able to find an euro coin dataset. Therefore I ask the community to participate sending me pictures following these instructions:
@@ -21,6 +27,11 @@ For example a photo of 20 cents pictures should ONLY have 20 cents coins on an A
 Please send the pictures to miguelgranero99@gmail.com
 
 Thank you for participating!
+
+### Results after detecting coins
+My algorithm will output a cropped image of each coin:
+
+<img src="images/coin0.png" height="150"/> <img src="images/coin1.png" height="150"/> <img src="images/coin2.png" height="150"/> <img src="images/coin3.png" height="150"/> <img src="images/coin4.png" height="150"/>
 
 ## References
 I used some software already developed or I was inspired by:
