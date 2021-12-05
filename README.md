@@ -1,5 +1,5 @@
 # EURO-Coin-Detector
-This repository aims to build a fully automated Euro coin detector.
+This repository aims to build a fully automated Euro coin detector. It's still a WIP, so if you have any ideas or recommendations, I am opened to listening to them.
 
 ## Selecting the area
 
