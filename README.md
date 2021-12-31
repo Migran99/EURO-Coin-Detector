@@ -27,6 +27,9 @@ But still some preprocessing is needed to isolate the coins the same way my algo
 
 With this data and the raw input of the dataset, the ANN doesn't perform very well with the coins obtained by my algorithm.
 
+## How to use
+Run firstly `areaSelector.py` and then `coinDetector.py`. See _ main _ of both to configure.
+
 
 ## References
 I used some software already developed or I was inspired by:
