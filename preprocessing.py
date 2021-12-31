@@ -56,7 +56,7 @@ def create_data(CATEGORIES, DIRECTORY, N):
     '''
     Parse the data
     '''
-    IMG_SIZE = 64
+    IMG_SIZE = 128
     X = []
     y = []
     for category in CATEGORIES:
@@ -109,7 +109,7 @@ if __name__ == "__main__":
     #convertDataset(CATEGORIES,DIRECTORY)
     print('Creating data structure')
     features = []
-    X, y = create_data(CATEGORIES,'dataset',2000)
+    X, y = create_data(CATEGORIES,'train',2000)
     #features = flattenImages(X)
     print("Features length: ", len(features))
     print("X length: ", X[0].shape)
