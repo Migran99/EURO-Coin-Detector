@@ -1,3 +1,10 @@
+########################
+#
+#      --- - Coin Detector for the EURO Coin Detector - ---
+#   
+#
+#                   Miguel Granero Ramos 2021
+####
 
 import cv2
 import numpy as np
@@ -43,7 +50,7 @@ def getCoins(img):
     #plt.show()
 
     # Show the results of the segmentation + watershed
-    print(markers.shape)
+    #print(markers.shape)
     result = img.copy()
     result[markers < 2] = [0,0,0]
     result[markers >= 2] = [255,255,255]
@@ -61,34 +68,25 @@ def getCoins(img):
 
     return coins
 
-def processCoins(img, coins):
+def processCoins(img, coins, path='images/coin', save=False):
     # Recognition of coins  
     # yellow -> 180º
     nCoins = len(coins)
-
+    c = []
     # Process one by one, NOT FINISHED. At the moment it only saves it
     for i in range(nCoins):
         coinImg = cv2.bitwise_and(img, img, mask=coins[i])
         count, hier = cv2.findContours(coins[i], 1,2)
         x,y,w,h = cv2.boundingRect(count[0])
         coinImg = coinImg[y:y+h,x:x+w]
-        cv2.imwrite("images/coin" + str(i) + ".png",coinImg)
+        c.append(coinImg)
 
-        # Histogram analysis
-        coinImg = cv2.cvtColor(coinImg, cv2.COLOR_RGB2HSV)
-        h,s,v = cv2.split(coinImg)
-        histH = cv2.calcHist(h, [0], None, [255], [0, 255])
-        histS = cv2.calcHist(s, [0], None, [255], [0, 255])
-        histV = cv2.calcHist(v, [0], None, [255], [0, 255])
-        plt.figure()
-        plt.plot(histH)
-        plt.plot(histS)
-        plt.plot(histV)
-
-
-        plt.figure()
-        plt.imshow(v, vmin=0, vmax=255)
-        plt.colorbar()
+        if(save):
+            try:
+                cv2.imwrite(path + str(i) + ".png",coinImg)
+            except:
+                print("Could not save")
+    return c
 
 if __name__ == "__main__":
     img = cv2.imread("images/output.png")

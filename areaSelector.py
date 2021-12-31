@@ -1,3 +1,11 @@
+########################
+#
+#      --- - Area Selector for the EURO Coin Detector - ---
+#   
+#
+#                   Miguel Granero Ramos 2021
+####
+
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
