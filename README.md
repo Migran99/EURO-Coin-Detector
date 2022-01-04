@@ -5,10 +5,10 @@ This repository aims to build a fully automated Euro coin detector. It's still a
 
 Homography is used to warp the image and get only the ROI. For that, the coins must be on a A4 paper.
 
-The distribution of the coins does not matter (or at least it shouldn't). My algorithms detects the borders of the paper and transforms it into a cropped and stretched image of it.
+The distribution of the coins does not matter (they can be together). My algorithms detects the borders of the paper and transforms it into a cropped and stretched image of it.
 
 ### Original Image
-<img src="images/torcida.jpeg" width="400"/>
+<img src="images/juntas.jpeg" width="400"/>
 
 ### Warped Image
 <img src="images/output.png" width="400"/>

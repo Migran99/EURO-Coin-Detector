@@ -143,4 +143,4 @@ def getCoinArea(filePath):
     return resImage
 
 if(__name__ == "__main__"):
-    getCoinArea("images/torcida.jpeg")
+    getCoinArea("images/juntas.jpeg")
