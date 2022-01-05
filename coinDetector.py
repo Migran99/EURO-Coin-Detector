@@ -68,7 +68,7 @@ def getCoins(img):
 
     return coins
 
-def processCoins(img, coins, path='images/coin', save=False):
+def processCoins(img, coins, path='images/coin', save=True):
     # Recognition of coins  
     # yellow -> 180º
     nCoins = len(coins)
@@ -91,4 +91,4 @@ def processCoins(img, coins, path='images/coin', save=False):
 if __name__ == "__main__":
     img = cv2.imread("images/output.png")
     coins = getCoins(img)
-    processCoins(img,coins, True)
+    processCoins(img,coins)

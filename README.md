@@ -13,6 +13,10 @@ The distribution of the coins does not matter (they can be together). My algorit
 ### Warped Image
 <img src="images/output.png" width="400"/>
 
+### Explanation
+- First the white papersheet is detected and the image is warped according to the A4 proportions. This can be found in `areaSelector.py`.
+- Secondly, the coins are isolated from the white background using the watershed algorithm and then saved individually. `coinDetector.py`.
+  
 ### Results after detecting coins
 My algorithm will output a cropped image of each coin:
 
@@ -26,6 +30,8 @@ https://github.com/Pitrified/coin-dataset
 But still some preprocessing is needed to isolate the coins the same way my algorithm do and not have a green background for example.
 
 With this data and the raw input of the dataset, the ANN doesn't perform very well with the coins obtained by my algorithm.
+
+You can find the code in Jupyter Notebooks in the folder `notebooks` (`testANN` and `trainANN`).
 
 ## How to use
 Run firstly `areaSelector.py` and then `coinDetector.py`. See _ main _ of both to configure.
