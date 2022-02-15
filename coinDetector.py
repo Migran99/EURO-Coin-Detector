@@ -68,7 +68,7 @@ def getCoins(img):
 
     return coins
 
-def processCoins(img, coins, path='images/coin', save=True):
+def processCoins(img, coins, path='images/coin', remove_bg = False,save=True, padding = (50,50)):
     # Recognition of coins  
     # yellow -> 180º
     nCoins = len(coins)
@@ -78,7 +78,14 @@ def processCoins(img, coins, path='images/coin', save=True):
         coinImg = cv2.bitwise_and(img, img, mask=coins[i])
         count, hier = cv2.findContours(coins[i], 1,2)
         x,y,w,h = cv2.boundingRect(count[0])
-        coinImg = coinImg[y:y+h,x:x+w]
+        x = x - padding[0]
+        y = y - padding[1]
+        w = w + 2*padding[0]
+        h = h + 2*padding[1]
+        if remove_bg:
+            coinImg = coinImg[y:y+h,x:x+w]
+        else:
+            coinImg = img[y:y+h,x:x+w]
         c.append(coinImg)
 
         if(save):
