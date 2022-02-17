@@ -103,7 +103,7 @@ def saveData(X,y,data, path="output"):
 
 
 if __name__ == "__main__":
-    DIRECTORY = "original" # Windows/PC
+    DIRECTORY = "dataset" # Windows/PC
     CATEGORIES = ['1c', '1e', '2c','2e','5c','10c','20c','50c']  
     #print('Converting Dataset')
     #convertDataset(CATEGORIES,DIRECTORY)

@@ -24,12 +24,11 @@ My algorithm will output a cropped image of each coin:
 
 ## Coin Detection - Dataset (WIP)
 
-I tried a dataset from:
+I tried datasets from:
 https://github.com/Pitrified/coin-dataset
+https://github.com/kaa/coins-dataset
 
-But still some preprocessing is needed to isolate the coins the same way my algorithm do and not have a green background for example.
-
-With this data and the raw input of the dataset, the ANN doesn't perform very well with the coins obtained by my algorithm.
+A mix of both dataset is being used now to train the ANN. Some decent results have been obtained with the current architecture shown ind the notebooks.
 
 You can find the code in Jupyter Notebooks in the folder `notebooks` (`testANN` and `trainANN`).
 

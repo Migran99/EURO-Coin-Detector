@@ -12,11 +12,13 @@ import matplotlib.pyplot as plt
 
 
 
-def getCoins(img):
+def getCoins(img, sensitivity):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     imgHSV = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
 
-    mask = cv2.inRange(imgHSV,(0,0,0),(255,120,255))
+    lower_white = np.array([0,0,255-sensitivity])
+    upper_white = np.array([255,sensitivity,255])
+    mask = cv2.inRange(imgHSV,lower_white,upper_white)
     mask = cv2.bitwise_not(mask)
     plt.imshow(mask,cmap='gray')
     #plt.show()
@@ -24,7 +26,7 @@ def getCoins(img):
     # Treat the mask to cover all the coins
     kernel = np.ones((5,5), np.uint8)
     morf = cv2.erode(mask, kernel, iterations=5)
-    morf = cv2.dilate(mask, kernel, iterations=15)
+    morf = cv2.dilate(mask, kernel, iterations=20)
     opening = cv2.morphologyEx(morf,cv2.MORPH_OPEN,kernel, iterations = 3)
 
     # sure background area
@@ -92,10 +94,11 @@ def processCoins(img, coins, path='images/coin', remove_bg = False,save=True, pa
             try:
                 cv2.imwrite(path + str(i) + ".png",coinImg)
             except:
-                print("Could not save")
+                print("Could not save {}".format(i))
     return c
 
 if __name__ == "__main__":
     img = cv2.imread("images/output.png")
-    coins = getCoins(img)
+    coins = getCoins(img,150) # Configure sensitivity
+    # It is possible to change the padding among other features, see function def:
     processCoins(img,coins)

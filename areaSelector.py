@@ -28,15 +28,17 @@ def filterImage(im):
     #plt.show()
     return filteredImage
 
-def thersholdImage(im):
+def thersholdImage(im, sensitivity = 140):
     hsv = cv2.cvtColor(im,cv2.COLOR_RGB2HSV)
     gray = cv2.cvtColor(im,cv2.COLOR_RGB2GRAY)
+    lower_white = np.array([0,0,255-sensitivity])
+    upper_white = np.array([255,sensitivity,255])
     ret, thresImage = cv2.threshold(gray,100,255,cv2.THRESH_BINARY)
-    thresImage = cv2.inRange(hsv,(0,0,0),(255,120,255))
+    thresImage = cv2.inRange(hsv,lower_white,upper_white)
     
     plt.imshow(cv2.cvtColor(thresImage, cv2.COLOR_BGR2RGB))
     plt.title('Threshold Image')
-    plt.show()
+    #plt.show()
     return thresImage
 
 def sortCorners(corners):
@@ -123,13 +125,13 @@ def unwarpImage(img, src, dst, wr, hr):
     #ax2.set_xlim([0, w])
     ax2.set_title('Target Area')
 
-    plt.show()
+    #plt.show()
     return un_warped
 
-def getCoinArea(filePath):
+def getCoinArea(filePath, sensitivity = 140):
     orImage = loadImage(filePath)
     #filImage = filterImage(orImage)
-    thresImage = thersholdImage(orImage)
+    thresImage = thersholdImage(orImage, sensitivity)
     src_corners = detectCorners(thresImage, orImage)
 
     dst_corners, h, w = destPoints(300)
@@ -137,10 +139,10 @@ def getCoinArea(filePath):
     resImage = unwarpImage(orImage,src_corners,dst_corners,w,h)   
     plt.imshow(resImage)
     plt.title('Warped')
-    plt.show()
+    #plt.show()
     resImage = cv2.cvtColor(resImage, cv2.COLOR_RGB2BGR)
     cv2.imwrite("images/output.png",resImage)
     return resImage
 
 if(__name__ == "__main__"):
-    getCoinArea("images/juntas.jpeg")
+    getCoinArea("images/juntas.jpeg", 140) # Change sensitivity of the threshold
